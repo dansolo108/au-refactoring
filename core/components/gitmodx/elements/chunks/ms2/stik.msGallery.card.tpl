@@ -9,7 +9,7 @@
             {else}
                 <picture>
                     <source type="image/webp" srcset="{$file['category_webp']}">
-                    <img width="516" height="687" class="au-card__img{if $index > 0} au-card__img_hover{/if}" src="{$file['category']}" alt="{$pagetitle}" title="{$pagetitle}">
+                    <img width="516" height="687" class="au-card__img{if $index > 0} au-card__img_hover{/if}" src="{$file['category']}" alt="{$pagetitle}" title="{$pagetitle}" loading="lazy">
                 </picture>
             {/if}
         {/if}

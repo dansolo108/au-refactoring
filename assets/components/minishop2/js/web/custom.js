@@ -251,6 +251,7 @@
             });
         },
         add: function () {
+            
             var callbacks = miniShop2.Cart.callbacks;
             let id = miniShop2.sendData.formData[0]['value'];
             callbacks.add.response.success = function (response) {

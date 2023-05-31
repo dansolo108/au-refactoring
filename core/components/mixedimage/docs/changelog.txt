@@ -1,0 +1,100 @@
+--------------------
+
+Extra: mixedImage -  Custom TV
+
+--------------------
+### 2.1.0
+* Refactoring
+* Support MODx 3.0
+* CSS Fix
+* Drag from tree
+  
+--------------------
+# Version 2.0.9-beta  
+:: Fix Access Denied in MODx 2.8.0
+  
+--------------------
+# Version 2.0.8-beta  
+:: Fix MIGX CMP  
+
+--------------------
+# Version 2.0.7-beta  
+:: Add video preview   
+
+--------------------
+# Version 2.0.6-beta  
+-- By DeNomad
+:: Add drag&drop   
+
+--------------------
+# Version 2.0.5-beta  
+:: Bugfix  
+
+--------------------
+# Version 2.0.4-beta  
+:: Fix url upload on migx  
+
+--------------------
+# Version 2.0.3-beta  
+:: Fix css for modx-resource-main-right position
+:: Fix js bug on url upload
+
+--------------------
+# Version 2.0.2-beta 
+:: Add download by external url
+:: Move removing file in modx processor
+:: Control buttons for each tv field
+:: Fix css
+
+--------------------
+# Version 2.0.1-beta 
+-- By SintezCode
+:: Rewrite extjs part for extending and overriding by another components.
+:: Triggers now may configured by triggerConfig.
+:: Triggers handlers may extending or overriding.
+:: Input width now depended by triggers count and its width.
+:: In css now not needed triggers width and positions
+:: Add ability to set custom upload path by another components or by extending or overriding
+:: Uploader now send all resource-panel fields in processor and may used to get upload path by placeholders or in snippet
+
+--------------------
+# Version 2.0.0-beta
+:: Change TV view
+:: Fix upload for unsaved resource
+:: Added file deletion
+
+--------------------
+# Version 1.1.6-beta
+:: Fixed plugin event
+
+--------------------
+# Version 1.1.5-beta
+:: Fixed media path on ajax request
+:: Fixed undefined in manager lexicon
+
+--------------------
+# Version 1.1.4-beta
+:: Fixed {alias}
+
+--------------------
+# Version 1.1.3-beta
+:: Fixed for media source path in context
+
+--------------------
+# Version 1.1.2-beta
+:: Fixed for media source path  (2)
+
+--------------------
+# Version 1.1.1-beta 
+:: legiero: Fixed css
+:: Fixed russian filename
+
+--------------------
+# Version 1.1.0-beta
+ :: Add resize options
+ :: Fixed for MIGX
+ :: Fixed for media source path
+
+--------------------
+# Version 1.0.0-beta
+ :: initial release

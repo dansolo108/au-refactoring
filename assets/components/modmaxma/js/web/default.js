@@ -6,7 +6,7 @@ class modMaxma {
             },
             success:({prefix})=>{
                 if(prefix === "set"){
-                    this.getAction("order_bonuses")
+                    // this.getAction("order_bonuses")
                 }
             }
         },

@@ -7,7 +7,7 @@
 <script>
     PageInfo.products['{$product_id}'] = {$product_id | getJSONPageInfo};
 </script>
-<form class="{$wrapper_classes}" id="product-{$product_id}-{$idx}" product-id="{$product_id}">
+<form method="post" class="{$wrapper_classes} msoptionsprice-product" id="product-{$product_id}-{$idx}" product-id="{$product_id}">
     <a class="au-card__link" href="{$product_id | url}?{$color?'color='~$color:''}">
         <div class="au-card__img-box">
             <div class="au-card__gallery js_card-img">
@@ -55,4 +55,10 @@
             <a class="au-card__like msfavorites" href="" aria-label="Добавить в избранное" data-click data-data-list="default" data-data-type="resource" data-data-key="{$product_id}" {if $_modx->resource.template == 5}data-msfavorites-mode="list"{/if}></a>
         </div>
     </a>
+    <input type="hidden" name="id">
+    <input type="hidden" name="count" value="1">
+    <button type="submit" name="ms2_action" value="cart/add" style="display: none;"></button>
+    <button type="button" class="get-color-sizes au-btn" data-pid="{$product_id}">
+        Добавить в корзину
+    </button>
 </form>

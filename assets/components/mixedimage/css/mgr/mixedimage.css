@@ -1,0 +1,97 @@
+.mixedimage{
+	position: relative;
+	overflow: hidden;
+}
+
+.mixedimage div,
+.mixedimage input{
+	max-width: 100% !important;
+}
+ 
+#modx-resource-main-right .mixedimage .x-form-field-wrap,
+#modx-resource-main-right .mixedimage .x-column-layout-ct{
+    width: 100% !important; 
+    box-sizing: border-box;
+}
+
+#modx-resource-main-right .mixedimage input{ 
+    height: 30px !important;
+    box-sizing: border-box;
+}
+
+.mixedimage .x-form-field-wrap{
+	overflow: hidden;
+}
+
+.mixedimage label{
+	padding: 0 !important;
+	display: none !important;
+}
+
+.mixedimage .x-form-field-trigger-wrap{
+	margin-bottom: 10px;
+	margin-left: 0 !important;
+	max-width: 100%;
+}
+
+.mixedimge_name{
+	color: #777;
+	font-size: 12px;
+}
+
+.mixedimage .x-form-field-wrap .x-field-combo-btns .x-form-trigger{
+	background-color: #fff;
+	text-align: center;
+	border-left: 1px solid #e4e4e4 !important;
+}
+
+.mixedimage .x-form-field-wrap .x-field-combo-btns .x-form-trigger:hover{
+	border-left-color: transparent !important;
+}
+
+.mixedimage .x-form-field-wrap .x-field-combo-btns .x-form-trigger::before{
+	right: 0px !important;
+}
+
+.mixedimage .x-form-field-wrap .x-field-combo-btns .x-form-trigger:first-child{
+	border-radius: 0 !important;
+}
+.mixedimage .x-form-field-wrap .x-field-combo-btns .x-form-trigger:not(:last-child):hover{
+	border-radius: 0;
+}
+
+.x-field-trigger-clear-class:before {content: '\f00d' !important; }
+.x-field-trigger-manager-class:before {content: '\f1c5' !important;}
+.x-field-trigger-pc-class:before {content: '\f108' !important;}
+.x-field-trigger-url-class:before {content: '\f0c1' !important;}
+
+.mixedimage .x-form-field-wrap .x-field-combo-btns .x-form-trigger{
+	background-color: #fff;
+}
+
+.mixedimage .x-form-field-wrap .x-field-combo-btns .x-form-trigger:hover{
+	background-color: #3697CD;
+	color: #fff;
+}
+
+.modx-tv-image-preview{
+	margin-bottom: 20px;
+}
+
+.modx-tv-image-preview video{
+	width: 100%;
+	max-width: 500px;
+}
+
+.mixedimage.x-form-focus{
+	border: none !important;
+}
+
+.mixedimage .x-form-field-trigger-dd {
+	background: #E4E9EE;
+}
+
+input[name="inopt_resize"]{
+	width: 100%;
+	max-width: 500px;
+}

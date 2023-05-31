@@ -101,6 +101,8 @@ function toggleModalSearsh() {
 // открытие/закрытие бургера
 function toggleBurger() {
     $('.au-btn-burger_open').click(function () {
+        $('.au-header__wrapper').addClass('fixed');
+        $('.top-banner__wrapper').addClass('upwards');
         $('.au-burger').addClass('active');
         $('.au-header__lang-box').removeClass('active');
         $('body').addClass('no-scroll');
@@ -114,6 +116,8 @@ function toggleBurger() {
     });
 
     $('.au-btn-burger_close').click(function () {
+        $('.au-header__wrapper').removeClass('fixed');
+        $('.top-banner__wrapper').removeClass('upwards');
         $('.au-burger').removeClass('active visible');
         $('.au-header__sub-box').removeClass('active top');
         $('body').removeClass('no-scroll');

@@ -500,7 +500,7 @@ body {
       width: 100%;
     }
     @media (max-width: 1023px) {
-      display: none;
+    //   display: none;
     }
     &__field {
       transition: width .3s ease;
@@ -554,7 +554,8 @@ body {
   }
   &-loyalty{
     @media (max-width: 1023px) {
-      margin-bottom: 30px;
+    //   margin-bottom: 30px;
+    margin-bottom: 10px;
     }
   }
   &-bonuses {

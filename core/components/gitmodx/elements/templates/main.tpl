@@ -60,7 +60,7 @@
         <link rel="stylesheet" href="/assets/tpl/css/datepicker.css">
         <link rel="stylesheet" href="/assets/components/minishop2/css/web/lib/jquery.jgrowl.min.css">
         <link rel="stylesheet" href="/assets/tpl/css/intlTelInput.min.css">
-        <link rel="stylesheet" href="/assets/tpl/css/style.css">
+        <link rel="stylesheet" href="/assets/tpl/css/style.css?v={$_modx->config.cache_version}">
     {/block}
 
     <link rel="icon" href="/assets/tpl/favicon/favicon.ico">
@@ -394,7 +394,9 @@
                     </ul>
                     <div class="au-burger__contacts">
                         <a class="au-burger__phone"
-                           href="tel:{$_modx->config.phone | preg_replace : '/[^0-9+]/' : ''}">{$_modx->config.phone}</a>
+                           href="tel:+79215702113">+7 921 570-21-13 (Санкт-Петербург)</a>
+                        <a class="au-burger__phone"
+                           href="tel:+79263022528">+7 926 302-25-28 (Москва)</a>
                         <div class="au-burger__social-box">
                             <a class="au-burger__social" href="{$_modx->config.instagram}" target="_blank"
                                aria-label="{'stik_link_instagram' | lexicon}">
@@ -566,6 +568,7 @@
     <script src="/assets/tpl/js/script.js" defer></script>
     <script src="/assets/tpl/js/modx.js" defer></script>
     <script src="/assets/js/script.js" async></script>
+    <script src="/assets/js/score.js" async></script>
 {/block}
 {include 'modals'}
 </body>

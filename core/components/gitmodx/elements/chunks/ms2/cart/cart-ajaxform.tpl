@@ -64,5 +64,14 @@
                     {$_modx->getPlaceholder('msmc.symbol_right')}
                 </span>
         </div>
+        {if $order.discount_cost != 0}
+            <div class="auten-order-aside__field">
+                {'stik_order_info_discount' | lexicon}
+                <span class="ms2_total_discount">
+                    - {'!msMultiCurrencyPrice' | snippet : ['price' => $order.discount_cost]}
+                    {$_modx->getPlaceholder('msmc.symbol_right')}
+                </span>
+            </div>
+            {/if}
     </div>
 </aside>

@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    checkCartInfo()
     const cartForm = document.getElementById('cartform')
     if (!!cartForm) {
         const orderField = cartForm.querySelector('input[name="order"]'),

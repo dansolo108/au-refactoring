@@ -8,6 +8,7 @@ class msCartHandlerCustom extends msCartHandler implements msCartInterface
 {
     public function add($id, $count = 1, $options = array())
     {
+            
         if (empty($id) || !is_numeric($id)) {
             return $this->error('ms2_cart_add_err_id');
         }

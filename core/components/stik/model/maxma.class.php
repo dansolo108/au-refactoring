@@ -148,6 +148,24 @@ class maxma {
             return $data;
         }
     }
+    
+    // Обновляет информацию о клиенте по номеру телефона.
+    // Доступные параметры https://docs.maxma.com/api/#tag/Rabota-s-klientskoj-bazoj/paths/~1update-client/post
+    public function updateClientByPhone(string $phone, array $data)
+    {
+        $params['client'] = $data;
+        $params['phoneNumber'] = $phone;
+
+        $response = $this->modRestClient->post('update-client', $params);
+        $data = $response->process();
+
+        if (isset($data['errorCode'])) {
+            $this->modx->log(1, 'Maxma updateClient error: ' . print_r($data, 1));
+            return false;
+        } else {
+            return $data;
+        }
+    }
 
     // Обновляет баланс клиента
     public function adjustClientBalance(int $amount, $phone = '') {

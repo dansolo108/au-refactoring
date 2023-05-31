@@ -105,8 +105,11 @@ function reloadMsGallery(color, id) {
 
 // Переключение цветов в карточке товарв
 function changeCardColor(color, $input) {
-    let $card = $input.parents('.au-card');
-    if($card.length){
+    // let $card = $input.parents('.au-card');
+    let $card = $input.closest('.au-card');
+    // if($card.length){
+    console.log($card)
+    if($card) {
         let $img = $card.find('.js_card-img');
         if ($img.length) {
             $img.addClass('fade');
@@ -129,8 +132,22 @@ function changeCardColor(color, $input) {
     }
 }
 
+$(document).on('mse2_load', function(e, data) {
+    console.log('test')
+    $('.au-card .get-color-sizes').off('click')
+    $('.au-card .get-color-sizes').on('click', (e) => {
+        const target = e.target
+        fastAddToCart(target)
+    })
+})
+
 $(document).ready(function() {
     if (window.miniShop2) {
+        
+        $('.au-card .get-color-sizes').on('click', (e) => {
+            const target = e.target
+            fastAddToCart(target)
+        })
         
         $(document).on('mspc_set mspc_freshen', function(e, response) { // событие mspc_freshen добавлено в кастомном js-файле
             if(response.mspc.discount_amount > 0) {
@@ -285,7 +302,7 @@ $(document).on('change', 'input.au-card__color-input', function () {
     let $this = $(this),
         color = $($this).val();
     changeCardColor(color, $this);
-    $($this).parents('.au-card').find('a').each(function(){
+    $($this).closest('.au-card').find('a').each(function(){
         let href = $(this).attr('href').split('?')[0];
         $(this).attr('href', href + '?color=' + color)
     });
@@ -325,3 +342,61 @@ $(document).on('af_complete', function(event, response) {
         }
     }
 });
+
+function fastAddToCart(target) {
+    const pid = target.dataset.pid,
+    cardClass = `.au-card[product-id="${pid}"]`,
+    $card = target.closest(cardClass),
+    cid = $card.getAttribute('id'),
+    $link = $card.querySelector('.au-card__link'),
+    tmpArr = $link.href.split('='),
+    color = decodeURIComponent(tmpArr[1])
+
+    $.post('/assets/components/autentiments/getAjaxColorSizes.php', {
+        product_id: pid,
+        color: color
+    }, function(data) {
+        if (data) {
+
+            target.disabled = true
+            target.style.display = 'none'
+
+            const $sizes = document.createElement('div')
+            $sizes.classList.add('au-product__sizes')
+            $sizes.insertAdjacentHTML('beforeend', data)
+            target.parentNode.append($sizes)
+
+            $(`#${cid} .au-product__size`).on('click', (e) => {
+                if (e.target.classList.contains('not-size')) return false
+                const $submitter = target.closest(cardClass).querySelector('button[type="submit"]'),
+                $pid = $card.querySelector('input[name="id"]'),
+                mid = e.target.previousElementSibling.value
+            
+                $pid.value = mid
+                
+                $submitter.click()
+                $sizes.remove()
+
+                const $span = document.createElement('span')
+
+                miniShop2.Callbacks.add('Cart.add.response.success', `add_to_cart_success`, function(response) {
+                    $span.textContent = 'Товар добавлен'
+                })
+
+                miniShop2.Callbacks.add('Cart.add.response.error', 'add_to_cart_false', function(response) {
+                    $span.textContent = 'Товар не добавлен'
+                })
+
+                target.parentNode.append($span)
+
+                setTimeout(() => {
+                    $span.remove()
+                    target.disabled = false
+                    target.style.display = 'block'
+                }, 3000)
+
+                $(`#${cid} .au-product__size`).off('click')
+            })
+        }
+    })
+} 

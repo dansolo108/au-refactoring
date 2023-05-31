@@ -105,13 +105,13 @@ class modMaxma
                 </script>"
             );
         }
-        $css = trim($this->config["frontend_css"]);
-        if (!empty($js) && preg_match('/\.css/i', $css)) {
-            if (preg_match('/\.css$/i', $css)) {
-                $css .= '?v=' . substr(md5($this->version), 0, 10);
-            }
-            $this->modx->regClientCSS(str_replace($config['pl'], $config['vl'], $css));
-        }
+        // $css = trim($this->config["frontend_css"]);
+        // if (!empty($js) && preg_match('/\.css/i', $css)) {
+        //     if (preg_match('/\.css$/i', $css)) {
+        //         $css .= '?v=' . substr(md5($this->version), 0, 10);
+        //     }
+        //     $this->modx->regClientCSS(str_replace($config['pl'], $config['vl'], $css));
+        // }
     }
 
     // Создание нового клиента

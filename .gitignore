@@ -19,9 +19,11 @@ core/components/stik_loyalty/cron/1c/
 core/components/stik/cron/cities.zip
 core/components/stik/cron/extracted/
 .idea
+core/cron
 core/vendor
 core/composer*
 assets/PageSpeed
+core/packages
 core/packages/*
 !core/packages/*.zip
 extras
