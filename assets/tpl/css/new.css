@@ -45,7 +45,8 @@ button {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-header, main {
+header,
+main {
   width: 100%;
 }
 
