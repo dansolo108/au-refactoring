@@ -40,7 +40,8 @@ body {
   background: #efefef;
 }
 
-body, button {
+body,
+button {
   font-family: Helvetica, Arial, sans-serif;
 }
 
