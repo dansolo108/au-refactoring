@@ -102,7 +102,7 @@
                     {/if}
                 {/if}
             </div>
-            <h1 class="au-h1  au-product__title">{$_modx->resource.pagetitle}</h1>
+            <h1 class="au-h1 au-product__title">{$_modx->resource.pagetitle}</h1>
             <div class="au-card__row">
                 <div class="au-card__price-box">
                     {'!getModifications' | snippet : [
@@ -144,12 +144,15 @@
                 </div>
                 <button type="button" class="au-product__info-size">{'stik_modal_size_info_link' | lexicon}</button>
                 <div class="au-product__add-box">
-                    <button class="au-btn  au-product__add-basket {if !$hide_remains}active{/if}" type="submit" name="ms2_action" value="cart/add">{'ms2_frontend_add_to_cart' | lexicon}</button>
-                    <button class="au-btn-light  au-product__add-entrance {if $hide_remains || $remains == 0}active{/if}" type="button">
+                    <button class="au-btn au-product__add-basket {if !$hide_remains}active{/if}" type="submit" name="ms2_action" value="cart/add">{'ms2_frontend_add_to_cart' | lexicon}</button>
+                    <button class="au-btn-light au-product__add-entrance {if $hide_remains || $remains == 0}active{/if}" type="button">
                         <span class="entrance">{'stik_product_subscribe_button' | lexicon}</span>
                         <span class="entrance_end">{'stik_product_subscribe_success' | lexicon}</span>
                     </button>
-                    <div class="au-btn-light  au-product__add-size">{'stik_product_select_size' | lexicon}</div>
+                    <div class="au-btn-light au-product__add-size">{'stik_product_select_size' | lexicon}</div>
+                    {if $_modx->user.id == 5995 || $_modx->user.id == 30}
+                    <button type="button" class="au-product__oneclick">Купить в 1 клик</button>			
+                    {/if}
                 </div>
                 <button type="button" class="au-product__info-remains">{'stik_modal_remains_info_link' | lexicon}</button>
             </form>
@@ -167,8 +170,8 @@
             <div class="au-product__info">
                 <div class="au-product__accordeon">
                     {if $measurements}
-                        <button class="au-product__info-title  au-accordeon-title">{'stik_product_measurements_title' | lexicon}</button>
-                        <div class="au-product__info-content  au-accordeon-content">
+                        <button class="au-product__info-title au-accordeon-title">{'stik_product_measurements_title' | lexicon}</button>
+                        <div class="au-product__info-content au-accordeon-content">
                             <div class="au-product__info-group">
                                 {$_modx->resource.measurements | striptags | nl2br}
                             </div>
@@ -177,16 +180,16 @@
                 </div>
                 <div class="au-product__accordeon">
                     {if $care}
-                        <button class="au-product__info-title  au-accordeon-title">{'stik_product_care_title' | lexicon}</button>
-                        <div class="au-product__info-content  au-product__info-content_care  au-accordeon-content">
+                        <button class="au-product__info-title au-accordeon-title">{'stik_product_care_title' | lexicon}</button>
+                        <div class="au-product__info-content au-product__info-content_care au-accordeon-content">
                             {$_modx->resource.care | striptags | nl2br}
                         </div>
                     {/if}
                 </div>
                 <div class="au-product__accordeon">
                     {if $model_params}
-                        <button class="au-product__info-title  au-accordeon-title">{'stik_product_model_params' | lexicon}</button>
-                        <div class="au-product__info-content  au-accordeon-content">
+                        <button class="au-product__info-title au-accordeon-title">{'stik_product_model_params' | lexicon}</button>
+                        <div class="au-product__info-content au-accordeon-content">
                             <div class="au-product__info-group">
                                 {$_modx->resource.model_params | striptags | nl2br}
                             </div>
@@ -194,8 +197,8 @@
                     {/if}
                 </div>
                 <div class="au-product__accordeon">
-                    <button class="au-product__info-title  au-accordeon-title">{'stik_product_delivery_title' | lexicon}</button>
-                    <div class="au-product__info-content  au-product__info-content_delivery  au-accordeon-content">
+                    <button class="au-product__info-title au-accordeon-title">{'stik_product_delivery_title' | lexicon}</button>
+                    <div class="au-product__info-content au-product__info-content_delivery au-accordeon-content">
                         {'pdoField' | snippet : [
                             'id' => 544,
                             'field' => 'content',
@@ -219,7 +222,7 @@
 
     {if $complete_look}
         <section class="au-сomplete">
-            <h2 class="au-h2  au-сomplete__title">{'stik_product_complete_look_title' | lexicon}</h2>
+            <h2 class="au-h2 au-сomplete__title">{'stik_product_complete_look_title' | lexicon}</h2>
             <div class="au-сomplete__row">
                 {$complete_look}
             </div>
@@ -239,18 +242,18 @@
     ]}
 
     {if $also_like?}
-        <section class="au-liked  au-liked_container">
-            <h2 class="au-h2  au-liked__title">{'stik_product_also_like_title' | lexicon}</h2>
+        <section class="au-liked au-liked_container">
+            <h2 class="au-h2 au-liked__title">{'stik_product_also_like_title' | lexicon}</h2>
             <div class="au-liked__slider  swiper-container">
                 <div class="swiper-wrapper">
                     {$also_like}
                 </div>
             </div>
-            <div class="au-swiper-buttons  au-desktop_xl">
-                <div class="au-liked__prev  au-swiper-button-prev  swiper-button-prev"></div>
-                <div class="au-liked__next  au-swiper-button-next  swiper-button-next"></div>
+            <div class="au-swiper-buttons au-desktop_xl">
+                <div class="au-liked__prev au-swiper-button-prev  swiper-button-prev"></div>
+                <div class="au-liked__next au-swiper-button-next  swiper-button-next"></div>
             </div>
-            <div class="au-liked__pagination  au-swiper-pagination  swiper-pagination"></div>
+            <div class="au-liked__pagination au-swiper-pagination  swiper-pagination"></div>
         </section>
     {/if}
     {set $looked = '!looked' | snippet : [
@@ -260,38 +263,38 @@
     ]}
 
     {if $looked?}
-        <section class="au-liked  au-liked_container">
-            <h2 class="au-h2  au-liked__title">{'stik_product_looked' | lexicon}</h2>
+        <section class="au-liked au-liked_container">
+            <h2 class="au-h2 au-liked__title">{'stik_product_looked' | lexicon}</h2>
             <div class="au-liked__slider  swiper-container">
                 <div class="swiper-wrapper">
                     {$looked}
                 </div>
             </div>
-            <div class="au-swiper-buttons  au-desktop_xl">
-                <div class="au-liked__prev  au-swiper-button-prev  swiper-button-prev"></div>
-                <div class="au-liked__next  au-swiper-button-next  swiper-button-next"></div>
+            <div class="au-swiper-buttons au-desktop_xl">
+                <div class="au-liked__prev au-swiper-button-prev  swiper-button-prev"></div>
+                <div class="au-liked__next au-swiper-button-next  swiper-button-next"></div>
             </div>
-            <div class="au-liked__pagination  au-swiper-pagination  swiper-pagination"></div>
+            <div class="au-liked__pagination au-swiper-pagination  swiper-pagination"></div>
         </section>
     {/if}
     {'!addLooked' | snippet : [
     	'templates'=>'3',
     	'limit'=>'12',
     ]}
-    <div class="au-modal au-modal-entrance  modal">
-        <div class="au-modal__wrapper  au-entrance">
+    <div class="au-modal au-modal-entrance modal">
+        <div class="au-modal__wrapper au-entrance">
             <button class="au-close au-entrance__close" aria-label="{'stik_modal_close' | lexicon}"></button>
-            <div class="au-modal__content  au-entrance__content">
-                <h3 class="au-h1  au-entrance__title">{'stik_ss_form_title' | lexicon}</h3>
+            <div class="au-modal__content au-entrance__content">
+                <h3 class="au-h1 au-entrance__title">{'stik_ss_form_title' | lexicon}</h3>
                 <form class="au-entrance__form" id="size_subscribe_form">
                     <input type="hidden" name="modification_id">
                     <div class="custom-form__group">
                         <p class="au-entrance__text">{'stik_ss_form_caption' | lexicon}</p>
                         <span class="au-entrance__size">{'stik_ss_size' | lexicon} <span class="selected-size_js"></span></span>
                         <span class="au-entrance__size">{'ms2_product_color' | lexicon} <span class="selected-color_js"></span></span>
-                        <input class="custom-form__input  au-subscribe__input" type="tel" name="phone" placeholder="Введите телефон" value="{$_modx->user.mobilephone | filterFakeEmail}" data-val="{$_modx->user.mobilephone | filterFakeEmail}">
+                        <input class="custom-form__input au-subscribe__input" type="tel" name="phone" placeholder="Введите телефон" value="{$_modx->user.mobilephone | filterFakeEmail}" data-val="{$_modx->user.mobilephone | filterFakeEmail}">
                         <span class="error_phone"></span>
-                        <button class="au-btn  au-entrance__submit" type="submit">{'stik_ss_form_submit' | lexicon}</button>
+                        <button class="au-btn au-entrance__submit" type="submit">{'stik_ss_form_submit' | lexicon}</button>
                         <p class="au-subscribe__politics-text">{'stik_ss_form_agree1' | lexicon} <a class="au-subscribe__politics-link au-text-tab_js" href="policy">{'stik_ss_form_policy_link' | lexicon}</a></p>
                     </div>
                 </form>
@@ -299,11 +302,12 @@
         </div>
     </div>
     
-    <div class="au-modal  au-modal-size  modal  au-info-size">
+    <div class="au-modal au-modal-size modal au-info-size">
         <div class="au-info-size__wrapper">
             <button class="au-close au-modal-size__close" aria-label="{'stik_modal_close' | lexicon}"></button>
-            <div class="au-modal__content  au-info-size__content">
+            <div class="au-modal__content au-info-size__content">
                 <h3 class="au-info-size__title">{'stik_modal_size_title' | lexicon}</h3>
+                <h4 class="au-info-size__subtitle">Точную информацию о размерах по каждой модели ищите в карточке товара во вкладке «Параметры изделия»</h4>
                 <div class="au-info-size__group">
                     <ul class="au-info-size__list">
                         <li class="au-info-size__item">SIZE</li>
@@ -420,10 +424,10 @@
         </div>
     </div>
     
-    <div class="au-modal  au-modal-remains  modal">
+    <div class="au-modal au-modal-remains modal">
         <div class="au-info-size__wrapper">
             <button class="au-close au-modal-size__close" aria-label="{'stik_modal_close' | lexicon}"></button>
-            <div class="au-modal__content  au-info-size__content">
+            <div class="au-modal__content au-info-size__content">
                 <h3 class="au-info-size__title">{'stik_modal_remains_title' | lexicon}</h3>
                 <div class="au-info-size__group">
                     <div class="au-info-size__table-box">
@@ -438,4 +442,49 @@
             </div>
         </div>
     </div>
+
+    <div class="au-modal modal oneclick">
+        <div class="au-modal__wrapper">
+            <button class="au-close oneclick-close" aria-label="{'stik_modal_close' | lexicon}"></button>
+            <div class="au-modal__content oneclick-content">
+                <div class="oneclick-product">
+                    <div class="oneclick-img">
+                        <img src="" alt="{$_modx->resource.pagetitle}" loading="lazy">
+                    </div>
+                    <div class="oneclick-meta">
+                        <div class="oneclick-title">{$_modx->resource.pagetitle}</div>
+                        <div class="oneclick-sku">Арт.: {$_modx->resource.article}</div>
+                        <div class="oneclick-price">{$price}</div>
+                        <div class="oneclick-color"></div>
+                        <div class="oneclick-size"></div>
+                    </div>
+                </div>
+                {set $product = $_modx->resource.article~','~($price|replace:' ':'')}
+                <form id="checkpromocode" action="/data.json">
+                    <label>
+                        <span>Промокод</span>
+                        <input id="promocode" type="text" name="promocode" required>
+                    </label>
+                    <input id="product" type="hidden" name="product" value="{$product}">
+                    <input id="step" type="hidden" name="step" value="check">
+                    <input type="submit" value="Применить">
+                </form>
+                {$_modx->runSnippet('!AjaxForm', [
+                    'form' => 'ajaxform-oneclick',
+                    'formName' => 'Заказ в 1 клик',
+                    'formFields' => 'name,phone,order,price,promo',
+                    'fieldNames' => 'name==Имя,phone==Телефон,order==Заказ,price==Цена,promo==Промокод',
+                    'amoFields' => 'name==425633||phone==432037||order==432043||promo==432045',
+                    'hooks' => 'FormItSaveForm,stikAmoCRM,cleanCart',
+                    'validate' => 'phone:required:minLength=^11^',
+                    'validationErrorMessage' => 'Неверные данные',
+                    'successMessage' => 'Заказ успешно отправлен',
+                    'submitVar' => 'oneclickSubmitter',
+                    'price' => $price,
+                    'order' => $_modx->resource.pagetitle
+                ])}
+            </div>
+        </div>
+    </div>
+    {'<script src="/assets/js/oneclick.js"></script>' | jsToBottom}
 {/block}

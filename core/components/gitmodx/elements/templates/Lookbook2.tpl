@@ -32,11 +32,11 @@
             {if $lookbook}
             <div class="au-lookbook__items">
                 {foreach $lookbook as $item}
-                    {set $photo = $item.photo}
+
                     <div class="au-lookbook__item au-lookbook__item-{$item.size}">
-                        <img src="{$photo}" loading="lazy">
+                        <img src="{$item.photo | phpthumbon : 'w=1029&far=C&q=95&f=webp'}" loading="lazy">
                         {if $item.ids}
-                            <div class="au-lookbook__button" onclick="return toggleLBProducts(this)">
+                            <div class="au-lookbook__button" onclick="event.stopPropagation(); return toggleLBProducts(this)">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M10 12.4999C11.5259 12.4999 12.75 11.2835 12.75 9.79883H13.75C13.75 11.85 12.0639 13.4999 10 13.4999C7.93612 13.4999 6.25 11.85 6.25 9.79883H7.25C7.25 11.2835 8.47403 12.4999 10 12.4999Z" fill="#fff"/>
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M4.88752 5C3.62625 5 2.5625 5.93951 2.40667 7.19112L1.28612 16.1911C1.10039 17.6828 2.26371 19 3.76697 19H16.2331C17.7363 19 18.8997 17.6828 18.7139 16.1911L17.5934 7.19112C17.4375 5.93951 16.3738 5 15.1125 5H13.4646C13.222 3.30385 11.7633 2 10 2C8.23679 2 6.77808 3.30385 6.53547 5H4.88752ZM4.88752 6C4.13075 6 3.49251 6.5637 3.39901 7.31467L2.27846 16.3147C2.16702 17.2097 2.86501 18 3.76697 18H16.2331C17.135 18 17.833 17.2097 17.7216 16.3147L16.601 7.31467C16.5075 6.5637 15.8693 6 15.1125 6H4.88752ZM10 3C8.79054 3 7.78167 3.85888 7.55003 5H12.45C12.2184 3.85888 11.2095 3 10 3Z" fill="#fff"/>
@@ -98,22 +98,35 @@
 {'
 <script>
     function toggleLBProducts(target) {
-
         const products = target.closest(".au-lookbook__item")
-            .querySelector(".au-lookbook__products"),
-        childNodesArr = Array.from(products.getElementsByTagName("*"))
+            .querySelector(".au-lookbook__products")
 
         target.classList.toggle("isActivated")
         document.body.classList.toggle("isFreezed")
         products.classList.toggle("isShown")
 
         products.addEventListener("swiped-down", (e) => {
-                target.classList.toggle("isActivated")
-                document.body.classList.toggle("isFreezed")
-                products.classList.toggle("isShown")
+                target.classList.remove("isActivated")
+                document.body.classList.remove("isFreezed")
+                products.classList.remove("isShown")
         }, {capture: true, once: true, passive: false})
-
     }
+
+    window.addEventListener("click", (e) => {
+
+        const shownProducts = document.querySelectorAll(".au-lookbook__products.isShown")
+        if (!shownProducts || e.target.closest(".au-lookbook__products.isShown")) return
+
+        shownProducts.forEach(el => {
+            const btn = el.closest(".au-lookbook__item")
+                .querySelector(".au-lookbook__button")
+            btn.classList.toggle("isActivated")
+            el.classList.toggle("isShown")
+        })
+
+        document.body.classList.toggle("isFreezed")
+        
+    }, {capture: false, once: false, passive: false})
 </script>
 ' | jsToBottom : true}
 {/block}

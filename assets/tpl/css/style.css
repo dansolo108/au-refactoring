@@ -1,18 +1,23 @@
 @charset "UTF-8";
-@font-face {
-  font-family: 'Circe';
-  font-style: normal;
-  font-weight: 300;
-  src: url('/assets/tpl/fonts/Circe-Light.woff2') format('woff2');
-  font-display: swap;
+
+@font-face { 
+    font-family: "Helvetica";
+    src: url("/assets/fonts/Helvetica/Helvetica-Light.eot");
+    src: url("/assets/fonts/Helvetica/Helvetica-Light.eot?#iefix")format("embedded-opentype"),
+    url("/assets/fonts/Helvetica/Helvetica-Light.woff") format("woff"),
+    url("/assets/fonts/Helvetica/Helvetica-Light.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 300;
 }
 
-@font-face {
-  font-family: 'Circe';
-  font-style: normal;
-  font-weight: 400;
-  src: url('/assets/tpl/fonts/Circe-Regular.woff2') format('woff2');
-  font-display: swap;
+@font-face { 
+    font-family: "Helvetica";
+    src: url("/assets/fonts/Helvetica/Helvetica-Bold.eot");
+    src: url("/assets/fonts/Helvetica/Helvetica-Bold.eot?#iefix")format("embedded-opentype"),
+    url("/assets/fonts/Helvetica/Helvetica-Bold.woff") format("woff"),
+    url("/assets/fonts/Helvetica/Helvetica-Bold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 700;
 }
 
 html {
@@ -1528,7 +1533,7 @@ form.ajax_form span.error {
     margin: 0 15px;
   }
   .au-header__link {
-    font-family: 'Circe';
+    font-family: 'Helvetica';
     position: relative;
     padding: 5px 0 16px;
     color: #1a1714;
@@ -2144,7 +2149,7 @@ form.ajax_form span.error {
 }
 
 .au-category__filter-count {
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   padding-left: 4px;
   letter-spacing: 0.04em;
   color: #4e4b4b;
@@ -2486,7 +2491,7 @@ form.ajax_form span.error {
   min-width: 70px;
   padding: 5px 10px 4px;
   margin-bottom: 16px;
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   font-size: 12px;
   line-height: 17px;
   letter-spacing: 0.06em;
@@ -2637,7 +2642,7 @@ form.ajax_form span.error {
   display: inline-block;
   vertical-align: baseline;
   min-width: 28px;
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   font-size: 16px;
   line-height: 22px;
   text-align: center;
@@ -2703,7 +2708,7 @@ form.ajax_form span.error {
 .au-product__add-basket,
 .au-product__add-entrance,
 .au-product__add-size {
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   width: 100%;
   opacity: 0;
   visibility: hidden;
@@ -2952,7 +2957,7 @@ form.ajax_form span.error {
 
 .au-ordering__login-link {
   position: relative;
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   font-size: 14px;
   line-height: 19px;
   color: #1a1714;
@@ -3016,7 +3021,7 @@ form.ajax_form span.error {
 .au-ordering__loyalty-title {
   display: block;
   margin-bottom: 10px;
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   font-size: 20px;
   line-height: 25px;
   color: #1a1714;
@@ -3148,7 +3153,7 @@ form.ajax_form span.error {
   position: relative;
   display: block;
   padding: 22px 0;
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   font-size: 14px;
   line-height: 22px;
   letter-spacing: 0.06em;
@@ -3263,7 +3268,7 @@ form.ajax_form span.error {
 
 .au-ordering__delivery-name {
   display: block;
-  font-family: 'Circe';
+  font-family: 'Helvetica';
 }
 
 .au-ordering__delivery-info {
@@ -3281,12 +3286,12 @@ form.ajax_form span.error {
   background: #f5f5f5;
 }
 .au-ordering__total .au-cart__modal-td:last-child {
-  font-family: 'Circe';
+  font-family: 'Helvetica';
 }
 
 .au-cart__modal-table .au-cart__modal-tr_total .au-cart__modal-td,
 .au-cart__modal-table .au-cart__modal-tr_total .au-cart__modal-td:last-child {
-  font-family: 'Circe';
+  font-family: 'Helvetica';
 }
 
 .au-ordering__total-title {
@@ -3474,7 +3479,7 @@ form.ajax_form span.error {
 .au-lookbook__items {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     gap: 8px;
 }
@@ -3489,10 +3494,15 @@ form.ajax_form span.error {
 
 .au-lookbook__item-50 {
     width: calc(50% - 4px);
+    aspect-ratio: 3 / 4;
 }
 
 .au-lookbook__item img {
+  width: 100%;
   max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
   vertical-align: middle;
 }
 
@@ -3531,20 +3541,24 @@ form.ajax_form span.error {
     z-index: -1;
 }
 
+.au-lookbook__button * {
+    pointer-events: none;
+}
+
 .au-lookbook__products {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   width: 100%;
   max-width: 340px;
-  max-height: 400px;
+  max-height: 402px;
   background: #fff;
   border-radius: 10px;
   padding: 20px;
   position: absolute;
   right: 20px;
   bottom: 66px;
-  overflow-y: scroll;
+  overflow-y: auto;
   z-index: 2;
 }
 
@@ -3566,6 +3580,9 @@ form.ajax_form span.error {
     }
     .au-lookbook__items {
         gap: 2px;
+    }
+    .au-lookbook__item {
+        max-height: 520px;
     }
     .au-lookbook__products {
         position: fixed;
@@ -3612,6 +3629,7 @@ form.ajax_form span.error {
 .au-card.au-lookbook__products-item .au-card__img-box {
     flex-shrink: 0;
   max-width: 84px;
+  overflow: hidden;
 }
 
 .au-card.au-lookbook__products-item .au-card__meta {
@@ -3759,7 +3777,7 @@ form.ajax_form span.error {
 }
 
 .au-lookbooks__card-title {
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   display: block;
   font-size: 22px;
   line-height: 26px;
@@ -4058,7 +4076,7 @@ form.ajax_form span.error {
   display: block;
   padding: 16px 0;
   margin: 0 15px;
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.06em;
@@ -4156,7 +4174,7 @@ form.ajax_form span.error {
 }
 
 .au-profile__loyalty-value {
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   font-size: 18px;
   font-weight: 400;
   line-height: 25px;
@@ -4193,7 +4211,7 @@ form.ajax_form span.error {
   display: inline-block;
   vertical-align: baseline;
   padding-top: 15px;
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.06em;
@@ -4255,7 +4273,7 @@ form.ajax_form span.error {
 }
 
 .au-profile__order-number {
-  font-family: 'Circe';
+  font-family: 'Helvetica';
 }
 
 .au-profile__order-td {
@@ -4401,7 +4419,7 @@ form.ajax_form span.error {
 }
 
 .datepicker--nav-title {
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   font-size: 18px;
   line-height: 25px;
   color: #1a1714;
@@ -4548,7 +4566,7 @@ form.ajax_form span.error {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    font-family: 'Circe';
+    font-family: 'Helvetica';
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.06em;
@@ -4755,7 +4773,7 @@ form.ajax_form span.error {
   margin-bottom: 12px;
 }
 .au-contacts__text b {
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   font-weight: 400;
 }
 
@@ -4953,6 +4971,10 @@ form.ajax_form span.error {
   visibility: visible;
 }
 
+.au-modal-customcart.au-modal.active {
+    z-index: 99999;
+}
+
 .au-modal__wrapper {
   position: relative;
   width: 100%;
@@ -5028,7 +5050,7 @@ form.ajax_form span.error {
 }
 
 .au-filter__title {
-  /*font-family: 'Circe';*/
+  /*font-family: 'Helvetica';*/
   display: block;
   /* margin-bottom: 6px; */
   font-size: 12px;
@@ -5752,7 +5774,7 @@ label.au-filter__cost:last-child input {
   color: #1a1714;
 }
 .au-login__bottom-text b {
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   font-weight: 400;
 }
 
@@ -5997,9 +6019,10 @@ label.au-filter__cost:last-child input {
 
 .au-cart__card-title {
   margin: 0 0 6px;
-  font-size: 18px;
+  font-size: 14px;
   line-height: 21px;
   color: #1a1714;
+  text-transform: uppercase;
 }
 
 .au-card__cart-price {
@@ -6090,7 +6113,7 @@ label.au-filter__cost:last-child input {
   padding: 0 12px 12px 0;
 }
 .au-cart__modal-td:last-child {
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   padding-right: 0;
   text-align: right;
 }
@@ -6359,7 +6382,7 @@ label.au-filter__cost:last-child input {
   color: #1a1714;
 }
 .au-text-page__tab.active {
-  font-family: 'Circe';
+  font-family: 'Helvetica';
 }
 
 .au-text-page__content-box {
@@ -6395,7 +6418,7 @@ label.au-filter__cost:last-child input {
 }
 .au-text-page__content-box strong,
 .au-text-page__content-box b {
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   font-weight: 400;
 }
 .au-text-page__content-box ul {
@@ -6500,7 +6523,7 @@ label.au-filter__cost:last-child input {
   .au-text-page__tab {
     position: relative;
     padding: 0 0 22px;
-    font-family: 'Circe';
+    font-family: 'Helvetica';
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.06em;
@@ -6566,7 +6589,7 @@ label.au-filter__cost:last-child input {
 }
 
 .au-modal-cookie__title {
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   font-size: 14px;
   line-height: 21px;
   letter-spacing: 0.06em;
@@ -6771,7 +6794,7 @@ label.au-filter__cost:last-child input {
   border-bottom: 1px solid #cccccc;
 }
 .au-order__table .au-cart__modal-td:last-child {
-  font-family: 'Circe';
+  font-family: 'Helvetica';
 }
 .au-order__table .au-cart__modal-tr:nth-child(2) .au-cart__modal-td {
   padding-top: 8px;
@@ -6787,7 +6810,7 @@ label.au-filter__cost:last-child input {
 .au-order__delivery-title {
   display: inline-block;
   vertical-align: baseline;
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   margin-bottom: 8px;
 }
 
@@ -6897,7 +6920,7 @@ label.au-filter__cost:last-child input {
   vertical-align: baseline;
   width: auto;
   margin: 20px auto 0;
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.06em;
@@ -7095,7 +7118,7 @@ label.au-filter__cost:last-child input {
 }
 
 .au-footer__link {
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   position: relative;
   display: block;
   padding: 10px 0;
@@ -7358,7 +7381,7 @@ label.au-filter__cost:last-child input {
   padding: 16px 0 18px;
   margin: 0;
   font-size: 18px;
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   font-weight: 400;
 }
 
@@ -7367,7 +7390,7 @@ label.au-filter__cost:last-child input {
   padding-bottom: 6px;
   margin: 0;
   font-size: 14px;
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   font-weight: 400;
 }
 
@@ -7608,7 +7631,7 @@ div.jGrowl > .ui-state-highlight {
   padding: 10px 5px;
   flex: 0 0 50%;
   color: #fff;
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   font-weight: 400;
 }
 
@@ -7646,7 +7669,7 @@ div.jGrowl > .ui-state-highlight {
   flex-direction: column;
   max-width: 1512px;
   margin: auto;
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   font-style: normal;
   font-weight: 300;
   font-size: 18px;
@@ -7813,7 +7836,7 @@ h2.about-block__title {
   gap: 120px;
   max-width: 1512px;
   margin: 0 auto;
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   font-style: normal;
   font-weight: 300;
   font-size: 18px;
@@ -7874,7 +7897,7 @@ h2.about-block__title {
   display: none;
 }
 .partners {
-  font-family: 'Circe';
+  font-family: 'Helvetica';
   font-style: normal;
   font-weight: 300;
   font-size: 18px;
@@ -8376,4 +8399,163 @@ h2.about-block__title {
     .au-customcart__content label {
       margin-left: -20px;
     }
+}
+
+/* OneClick Modal */
+
+.oneclick .au-modal__wrapper {
+  max-width: 450px;
+  background: #fff;
+  padding: 84px 50px 50px;
+}
+.oneclick-close {
+  width: 17px;
+  height: 17px;
+  padding: 0;
+  position: absolute;
+  top: 26px;
+  right: 50px;
+  z-index: 999;
+}
+.oneclick-close::before,
+.oneclick-close::after {
+  left: 0;
+  top: 8px;
+}
+.oneclick-product {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  font-size: 12px;
+  margin-bottom: 49px;
+}
+.oneclick-img {
+  max-width: 100px;
+  max-height: 126px;
+}
+.oneclick-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.oneclick-meta {
+  line-height: 1;
+}
+.oneclick-title,
+.oneclick-price {
+  color: #1A2026;
+  font-weight: 400;
+}
+.oneclick-title {
+  text-transform: uppercase;
+  letter-spacing: .02em;
+  margin-bottom: 14px;
+}
+.oneclick-sku {
+  color: #939598;
+  margin-bottom: 18px;
+}
+.oneclick-price {
+  font-size: 14px;
+  margin-bottom: 32px;
+}
+.oneclick-color,
+.oneclick-size {
+  display: inline-block;
+  vertical-align: middle;
+}
+.oneclick-color {
+  width: 20px;
+  height: 20px;
+}
+.oneclick-size {
+  font-size: 12px;
+  margin-left: 15px;
+}
+.oneclick label {
+  display: block;
+  width: 100%;
+}
+.oneclick label span {
+  display: block;
+  color: #BCBEC0;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+.oneclick input {
+  width: 100%;
+  font-weight: 300;
+  border: 1px solid #BCBEC0;
+  padding: 15px 10px;
+}
+.oneclick input[type=submit] {
+  color: #fff;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  background: #1A2026;
+  border: none;
+  transition: .3s ease-in-out;
+  cursor: pointer;
+}
+.oneclick input[type=submit]:hover {
+  background: rgba(26, 32, 38, 0.6);
+}
+#checkpromocode {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  justify-content: stretch;
+  margin-bottom: 30px;
+}
+#checkpromocode input[type=submit] {
+  flex-basis: 150px;
+}
+#oneclickForm label {
+  margin-bottom: 30px;
+}
+.oneclick-subtitle,
+.oneclick-text,
+.oneclick-href {
+  text-align: center;
+}
+.oneclick-subtitle,
+.oneclick-text {
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+.oneclick-subtitle {
+  font-weight: 400;
+}
+.oneclick-text {
+  line-height: 1.4;
+}
+.oneclick-href {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 48px;
+  background: #1A2026;
+  color: #fff;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.au-product__oneclick {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 48px;
+  margin-top: 10px;
+  font-size: 14px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  border: 1px solid #1A2026;
+  color: #1A2026;
+  transition: .3s ease-in-out;
+}
+.au-product__oneclick:hover {
+  color: rgba(26, 32, 38, 0.6);
+  border-color: rgba(26, 32, 38, 0.6);
 }

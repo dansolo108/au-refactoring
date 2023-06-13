@@ -60,7 +60,7 @@
                          <img src="/assets/tpl/img/showrooms/Москва/3.jpg" alt="">
                      </div>
                      <div class="showroom-photo swiper-slide">
-                         <img src="/assets/tpl/img/showrooms/Москва/4.png" alt="">
+                         <img src="/assets/tpl/img/showrooms/Москва/4.jpeg" alt="">
                      </div>
                 </div>
             </div>

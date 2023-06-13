@@ -204,3 +204,35 @@
   }
 </script>
 ' | jsToBottom}
+
+
+{if $_modx->resource.id != 936}
+
+<div class="au-modal au-wheel modal">
+    <div class="au-modal__wrapper au-wheel__wrapper">
+        <button class="au-close au-close__wheel" aria-label="Закрыть" onClick="ym(86113805,'reachGoal','notIntresting');">Закрыть</button>
+        <div class="au-modal__content">
+        {include 'wheelOfFortune'}
+        </div>
+        <button class="au-close au-close__wheel au-close__text" aria-label="Закрыть" onClick="ym(86113805,'reachGoal','notIntresting');">Не интересно</button>
+    </div>
+</div>
+
+{'
+<script>
+    const ls = localStorage.getItem("noNeedWheel");
+    if (!ls) {
+        setTimeout(() => {
+            document.querySelector(".au-modal-overlay").classList.add("active");
+            document.querySelector(".au-wheel").classList.add("active");
+        }, 5000);
+    }
+    document.querySelectorAll(".au-close__wheel").forEach(el => {
+        el.addEventListener("click", (e) => {
+            localStorage.setItem("noNeedWheel", 1);
+        },false)
+    })
+</script>
+' | jsToBottom}
+
+{/if}

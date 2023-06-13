@@ -42,7 +42,8 @@
           content="{$_modx->resource.og_description ? $_modx->resource.og_description : $_modx->resource.description}">
     <meta property="og:url" content="{$_modx->resource.id | url : ['scheme' => 'full']}">
     {if $_modx->resource.img}
-        {set $tv_img = '/assets/uploads/' ~ $_modx->resource.img}
+        {* set $tv_img = '/assets/uploads/' ~ $_modx->resource.img *}
+        {set $tv_img = $_modx->resource.img}
     {/if}
     {if $_modx->resource.og_image}
         {set $tv_og_image = '/' ~ $_modx->resource.og_image}
@@ -313,7 +314,7 @@
                 <div class="au-header__row-right">
                     <button class="au-header__btn  au-header__btn_search  btn_search_open  au-desktop_xl">{'stik_header_menu_search' | lexicon}</button>
                     <a class="au-header__btn  au-header__btn_login  au-desktop_xl"
-                           href="javascript:void(0)" onClick="document.querySelector('.au-modal-overlay').classList.add('active'); document.querySelector('.au-modal-customcart').classList.add('active');">{'stik_header_menu_profile' | lexicon}</a>
+                           href="javascript:void(0)" onClick="document.querySelector('.au-modal-overlay').classList.add('active'); document.querySelector('.au-modal-customcart').classList.add('active'); ym(86113805,'reachGoal','profileCheck');">{'stik_header_menu_profile' | lexicon}</a>
                     <a class="au-header__btn au-header__btn_favorite msfavorites msfavorites-total-all visible"
                        href="{14|url}" aria-label="Избранное">
                        <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -331,7 +332,7 @@
                 <div class="au-burger__head">
                     <button class="au-close au-btn-burger_close" aria-label="{'stik_modal_close' | lexicon}"></button>
                     <button class="au-burger__head-btn  btn_search_open">{'stik_header_menu_search' | lexicon}</button>
-                    <a class="au-burger__head-btn" href="javascript:void(0)" onClick="document.querySelector('.au-modal-overlay').classList.add('active'); document.querySelector('.au-modal-customcart').classList.add('active');">{'stik_header_menu_profile' | lexicon}</a>
+                    <a class="au-burger__head-btn" href="javascript:void(0)" onClick="document.querySelector('.au-modal-overlay').classList.add('active'); document.querySelector('.au-modal-customcart').classList.add('active'); ym(86113805,'reachGoal','profileCheck');">{'stik_header_menu_profile' | lexicon}</a>
                 </div>
                 <div class="au-search modal">
                     <button class="au-close  au-search__close  au-desktop_xl"

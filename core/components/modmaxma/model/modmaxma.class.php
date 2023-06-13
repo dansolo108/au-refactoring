@@ -383,6 +383,43 @@ class modMaxma
             return $data;
         }
     }
+    
+    /**
+     * Высчитвает скидку по промокоду, без создания заказа.
+     * @param string $promocode
+     * @return array|false
+     */
+    public function calculatePurchaseOneProduct(array $product, string $promocode)
+    {
+        $params = [
+            'calculationQuery' => [
+                'shop' => [
+                    'code' => $this->config['shopCode'],
+                    'name' => $this->config['shopName'],
+                ],
+                'promocode' => $promocode,
+                'rows' => [
+                    [
+                        'product' => [
+                            'sku' => $product['sku'],
+                            'blackPrice' => (float) $product['price'],
+                        ],
+                        'qty' => 1,
+                    ],
+                ],
+            ]
+        ];
+        $response = $this->modRest->post('v2/calculate-purchase', $params);
+        $data = $response->process();
+
+        if (isset($data['errorCode'])) {
+            $this->modx->log(1, 'Maxma calculatePurchaseOneProduct error: ' . print_r($data, 1));
+            return false;
+        } else {
+            return $data;
+        }
+    }
+    
     public function calculateCurrentOrder($bonuses = null, $promocode = null)
     {
         $order = $this->ms2->order->get();
