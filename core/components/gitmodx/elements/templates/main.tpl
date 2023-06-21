@@ -313,8 +313,12 @@
                 </a>
                 <div class="au-header__row-right">
                     <button class="au-header__btn  au-header__btn_search  btn_search_open  au-desktop_xl">{'stik_header_menu_search' | lexicon}</button>
-                    <a class="au-header__btn  au-header__btn_login  au-desktop_xl"
-                           href="javascript:void(0)" onClick="document.querySelector('.au-modal-overlay').classList.add('active'); document.querySelector('.au-modal-customcart').classList.add('active'); ym(86113805,'reachGoal','profileCheck');">{'stik_header_menu_profile' | lexicon}</a>
+                    {if $_modx->hasSessionContext('web')}
+                        <a class="au-header__btn  au-header__btn_login  au-desktop_xl"
+                           href="{11|url}">{'stik_header_menu_profile' | lexicon}</a>
+                    {else}
+                        <button class="au-header__btn  au-header__btn_login  btn_login_open  au-desktop_xl">{'stik_header_menu_login' | lexicon}</button>
+                    {/if}
                     <a class="au-header__btn au-header__btn_favorite msfavorites msfavorites-total-all visible"
                        href="{14|url}" aria-label="Избранное">
                        <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -331,8 +335,12 @@
             <div class="au-burger">
                 <div class="au-burger__head">
                     <button class="au-close au-btn-burger_close" aria-label="{'stik_modal_close' | lexicon}"></button>
-                    <button class="au-burger__head-btn  btn_search_open">{'stik_header_menu_search' | lexicon}</button>
-                    <a class="au-burger__head-btn" href="javascript:void(0)" onClick="document.querySelector('.au-modal-overlay').classList.add('active'); document.querySelector('.au-modal-customcart').classList.add('active'); ym(86113805,'reachGoal','profileCheck');">{'stik_header_menu_profile' | lexicon}</a>
+                    <button class="au-burger__head-btn btn_search_open">{'stik_header_menu_search' | lexicon}</button>
+                    {if $_modx->hasSessionContext('web')}
+                        <a class="au-burger__head-btn" href="{11|url}">{'stik_header_menu_profile' | lexicon}</a>
+                    {else}
+                        <button class="au-burger__head-btn btn_login_open">{'stik_header_menu_login' | lexicon}</button>
+                    {/if}
                 </div>
                 <div class="au-search modal">
                     <button class="au-close  au-search__close  au-desktop_xl"
