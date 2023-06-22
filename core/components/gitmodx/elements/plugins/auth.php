@@ -76,18 +76,19 @@ function auth(modUser $user, string $ctx = 'web')
     return false;
 }
 
-$modx->log(modX::LOG_LEVEL_ERROR, print_r('$response: ' .print_r($response, true), true));
-$modx->log(modX::LOG_LEVEL_ERROR, print_r('$modx->event->name: ' .print_r($modx->event->name, true), true));
+// $modx->log(modX::LOG_LEVEL_ERROR, print_r('$response: ' .print_r($response, true), true));
+// $modx->log(modX::LOG_LEVEL_ERROR, print_r('$modx->event->name: ' .print_r($modx->event->name, true), true));
 
 switch ($modx->event->name) 
 {
-    case "SMSAfterCodeCheck":
+    // case "SMSAfterCodeCheck":
+    case "SMSBeforeCodeSend":
 
         // $modx->log(modX::LOG_LEVEL_ERROR, print_r('auth works', true));
 
         $val = &$modx->event->returnedValues;
 
-        // $modx->log(modX::LOG_LEVEL_ERROR, print_r('val: ' .print_r($val), true));
+        $modx->log(modX::LOG_LEVEL_ERROR, print_r('$val: ' .print_r($val, true ), true));
         // $modx->log(modX::LOG_LEVEL_ERROR, print_r('response: ' .print_r($response), true));
 
         if ($response['success']) {
