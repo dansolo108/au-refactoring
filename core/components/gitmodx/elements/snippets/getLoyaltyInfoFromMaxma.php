@@ -19,6 +19,8 @@ if (empty($phone)) {
 
 $client = $maxma->getClientInfo('+'.$phone);
 
+$modx->log(1, print_r($client, 1));
+
 $data = $client['level'];
 $data['bonus'] = $client['bonuses'];
 
