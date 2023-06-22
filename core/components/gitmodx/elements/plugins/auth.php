@@ -76,6 +76,8 @@ function auth(modUser $user, string $ctx = 'web')
     return false;
 }
 
+$modx->log(modX::LOG_LEVEL_ERROR, print_r('response: ' .print_r($response), true));
+
 switch ($modx->event->name) 
 {
     case "SMSAfterCodeCheck":
@@ -84,8 +86,8 @@ switch ($modx->event->name)
 
         $val = &$modx->event->returnedValues;
 
-        $modx->log(modX::LOG_LEVEL_ERROR, print_r('val: ' .print_r($val), true));
-        $modx->log(modX::LOG_LEVEL_ERROR, print_r('response: ' .print_r($response), true));
+        // $modx->log(modX::LOG_LEVEL_ERROR, print_r('val: ' .print_r($val), true));
+        // $modx->log(modX::LOG_LEVEL_ERROR, print_r('response: ' .print_r($response), true));
 
         if ($response['success']) {
 
