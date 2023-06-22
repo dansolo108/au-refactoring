@@ -22,10 +22,7 @@ return array(
         'mSyncModifications'
     ],
     'SMSAfterCodeCheck' => [
-        'loginAndRegister'
-    ],
-    'SMSCodeActivate' => [
-        'loginAndRegister'
+        'auth'
     ],
     'msOnCreateOrder' => [
         'loginAndRegister',
