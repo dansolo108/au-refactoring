@@ -24,15 +24,6 @@ return array(
     'SMSBeforeCodeSend' => [
         'auth'
     ],
-    'SMSAfterCodeSend' => [
-        'auth'
-    ],
-    'SMSBeforeCodeCheck' => [
-        'auth'
-    ],
-    'SMSAfterCodeCheck' => [
-        'auth'
-    ],
     'msOnCreateOrder' => [
         'loginAndRegister',
         'ModificationsRemains'
