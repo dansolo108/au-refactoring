@@ -28,6 +28,7 @@ function phoneFormatting(string $phone)
 
 function findUserByPhone(string $phone)
 {
+    global $modx;
     $profile = $modx->getObject('modUserProfile', ['mobilephone' => $phone]);
     if ($profile) return $profile->getOne('User');
     return false;
@@ -35,7 +36,7 @@ function findUserByPhone(string $phone)
 
 function createUser(string $phone)
 {
-
+    global $modx;
     $email = $phone . '@' . $_SERVER['HTTP_HOST'];
     $password = md5($phone);
 
@@ -69,6 +70,7 @@ function createUser(string $phone)
 
 function auth(modUser $user, string $ctx = 'web')
 {
+    global $modx;
     if ($modx->getObject('modContext', $ctx) && !$modx->user->isAuthenticated($ctx)) {
         $user->addSessionContext($ctx);
         return true;
