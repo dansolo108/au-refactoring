@@ -88,9 +88,11 @@ switch ($modx->event->name)
 
         $val = &$modx->event->returnedValues;
 
-        $modx->log(modX::LOG_LEVEL_ERROR, print_r('$val: ' .print_r($val, true ), true));
+        // $modx->log(modX::LOG_LEVEL_ERROR, print_r('$val: ' .print_r($val, true ), true));
         // $modx->log(modX::LOG_LEVEL_ERROR, print_r('response: ' .print_r($response), true));
 
+        $modx->log(1, print_r(array_keys($scriptProperties), 1));
+        
         if ($response['success']) {
 
             $phone = phoneFormatting($phone);
