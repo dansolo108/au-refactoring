@@ -91,8 +91,11 @@ switch ($modx->event->name)
         // $modx->log(modX::LOG_LEVEL_ERROR, print_r('$val: ' .print_r($val, true ), true));
         // $modx->log(modX::LOG_LEVEL_ERROR, print_r('response: ' .print_r($response), true));
 
-        $modx->log(1, print_r(array_keys($scriptProperties), 1));
-        $modx->log(1, print_r($modx->event->returnedValues, 1));
+        // $modx->log(1, print_r(array_keys($scriptProperties), 1));
+        $modx->log(1, print_r($code, 1));
+        $modx->log(1, print_r($mode, 1));
+        $modx->log(1, print_r($values, 1));
+        $modx->log(1, print_r($phone, 1));
 
         if ($response['success']) {
 
