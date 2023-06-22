@@ -79,21 +79,17 @@ function auth(modUser $user, string $ctx = 'web')
 }
 
 // $modx->log(modX::LOG_LEVEL_ERROR, print_r('$response: ' .print_r($response, true), true));
-$modx->log(modX::LOG_LEVEL_ERROR, print_r('$modx->event->name: ' .print_r($modx->event->name, 1), 1));
+// $modx->log(modX::LOG_LEVEL_ERROR, print_r('$modx->event->name: ' .print_r($modx->event->name, 1), 1));
 
 switch ($modx->event->name) 
 {
-    // case "SMSAfterCodeCheck":
-    case "SMSBeforeCodeSend":
-
-        // $modx->log(modX::LOG_LEVEL_ERROR, print_r('auth works', true));
+    case "SMSAfterCodeCheck":
+    // case "SMSBeforeCodeSend":
 
         // $val = &$modx->event->returnedValues;
 
-        // $modx->log(modX::LOG_LEVEL_ERROR, print_r('$val: ' .print_r($val, true ), true));
-        // $modx->log(modX::LOG_LEVEL_ERROR, print_r('response: ' .print_r($response), true));
 
-        // $modx->log(1, print_r(array_keys($scriptProperties), 1));
+        $modx->log(1, print_r(array_keys($scriptProperties), 1));
         // $modx->log(1, print_r($code, 1));
         // $modx->log(1, print_r($mode, 1));
         // $modx->log(1, print_r($values, 1));
@@ -111,7 +107,7 @@ switch ($modx->event->name)
             }
 
             auth($user);
-            header("Refresh:0");
+            // header("Refresh:0");
         // }
 
         break;
