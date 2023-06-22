@@ -103,14 +103,14 @@ switch ($modx->event->name)
 
         // if ($response['success']) {
 
-            $phone = phoneFormatting($phone);
-            $user = findUserByPhone($phone);
+            $phone = $this->phoneFormatting($phone);
+            $user = $this->findUserByPhone($phone);
 
             if ($user == false) {
-                $user = createUser($phone);
+                $user = $this->createUser($phone);
             }
 
-            auth($user);
+            $this->auth($user);
             header("Refresh:0");
         // }
 
