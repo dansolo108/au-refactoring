@@ -17,7 +17,7 @@ if (empty($phone)) {
     return false;
 }
 
-$client = $maxma->getClientInfo($phone, 'phoneNumber');
+$client = $maxma->getClientInfo('+'.$phone);
 
 $data = $client['level'];
 $data['bonus'] = $client['bonuses'];
