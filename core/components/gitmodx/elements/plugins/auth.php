@@ -80,6 +80,8 @@ switch ($modx->event->name)
 {
     case "SMSAfterCodeCheck":
 
+        $modx->log(modX::LOG_LEVEL_ERROR, print_r('auth works', true));
+
         $val = &$modx->event->returnedValues;
 
         if ($response['success']) {
@@ -92,7 +94,7 @@ switch ($modx->event->name)
             }
 
             auth($user);
-            header("Refresh:0");
+            // header("Refresh:0");
         }
 
         break;
