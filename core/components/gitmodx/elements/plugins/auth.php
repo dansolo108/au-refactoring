@@ -80,9 +80,12 @@ switch ($modx->event->name)
 {
     case "SMSAfterCodeCheck":
 
-        $modx->log(modX::LOG_LEVEL_ERROR, print_r('auth works', true));
+        // $modx->log(modX::LOG_LEVEL_ERROR, print_r('auth works', true));
 
         $val = &$modx->event->returnedValues;
+
+        $modx->log(modX::LOG_LEVEL_ERROR, print_r('val: ' .print_r($val), true));
+        $modx->log(modX::LOG_LEVEL_ERROR, print_r('response: ' .print_r($response), true));
 
         if ($response['success']) {
 
