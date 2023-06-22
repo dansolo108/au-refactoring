@@ -17,3 +17,4 @@ jobs:
       - run: chmod 600 "$HOME/.ssh/key"
       # Deploy
       - run: rsync -e "ssh -p 22 -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --delete --include "core/cache/*/" --exclude "*" --archive --compress --update . autentiments@77.222.42.29:~/www/re.autentiments.com
+      - run: ssh autentiments@77.222.42.29 -p 22 -i $HOME/.ssh/key -o StrictHostKeyChecking=no "rm -rf ~/www/re.autentiments.com/core/cache/*"
