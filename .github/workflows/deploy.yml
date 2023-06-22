@@ -17,4 +17,3 @@ jobs:
       - run: chmod 600 "$HOME/.ssh/key"
       # Deploy
       - run: rsync -e "ssh -p 22 -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --update . autentiments@77.222.42.29:~/www/re.autentiments.com
-      - run: ssh -p 22 -i $HOME/.ssh/key -o StrictHostKeyChecking=no autentiments@77.222.42.29 php ~/www/re.autentiments.com/core/components/gitmodx/cliscripts/refreshcache.php
