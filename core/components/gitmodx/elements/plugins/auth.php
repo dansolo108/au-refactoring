@@ -14,12 +14,12 @@ function phoneFormatting(string $phone)
             '/[\+]?([7|8])[-|\s]?(\d{4})[-|\s]?(\d{3})[-|\s]?(\d{3})/',
         ),
         array(
-            '+7$2$3$4$5',
-            '+7$2$3$4$5',
-            '+7$2$3$4$5',
-            '+7$2$3$4$5',
-            '+7$2$3$4',
-            '+7$2$3$4',
+            '7$2$3$4$5',
+            '7$2$3$4$5',
+            '7$2$3$4$5',
+            '7$2$3$4$5',
+            '7$2$3$4',
+            '7$2$3$4',
         ),
         $trim
     );
@@ -92,8 +92,8 @@ switch ($modx->event->name)
         $modx->log(1, print_r(array_keys($scriptProperties), 1));
         // $modx->log(1, print_r($code, 1));
         // $modx->log(1, print_r($mode, 1));
-        // $modx->log(1, print_r($values, 1));
-        // $modx->log(1, print_r($phone, 1));
+        $modx->log(1, print_r($values, 1));
+        $modx->log(1, print_r($response, 1));
 
         // $val
 
