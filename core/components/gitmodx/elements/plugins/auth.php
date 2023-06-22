@@ -78,37 +78,23 @@ function auth(modUser $user, string $ctx = 'web')
     return false;
 }
 
-// $modx->log(modX::LOG_LEVEL_ERROR, print_r('$response: ' .print_r($response, true), true));
-// $modx->log(modX::LOG_LEVEL_ERROR, print_r('$modx->event->name: ' .print_r($modx->event->name, 1), 1));
-
 switch ($modx->event->name) 
 {
     case "SMSAfterCodeCheck":
-    // case "SMSBeforeCodeSend":
 
-        // $val = &$modx->event->returnedValues;
+        // $modx->log(1, print_r(array_keys($scriptProperties), 1));
 
-
-        $modx->log(1, print_r(array_keys($scriptProperties), 1));
-        // $modx->log(1, print_r($code, 1));
-        // $modx->log(1, print_r($mode, 1));
-        $modx->log(1, print_r($values, 1));
-        $modx->log(1, print_r($response, 1));
-
-        // $val
-
-        // if ($response['success']) {
+        if ($response['success']) {
 
             $phone = phoneFormatting($phone);
             $user = findUserByPhone($phone);
 
-            if ($user == false) {
+            if (!$user) {
                 $user = createUser($phone);
             }
 
             auth($user);
-            // header("Refresh:0");
-        // }
+        }
 
         break;
 }
