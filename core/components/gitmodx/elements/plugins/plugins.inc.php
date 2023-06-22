@@ -21,6 +21,15 @@ return array(
     'mSyncOnSalesExport' => [
         'mSyncModifications'
     ],
+    'SMSBeforeCodeSend' => [
+        'auth'
+    ],
+    'SMSAfterCodeSend' => [
+        'auth'
+    ],
+    'SMSBeforeCodeCheck' => [
+        'auth'
+    ],
     'SMSAfterCodeCheck' => [
         'auth'
     ],

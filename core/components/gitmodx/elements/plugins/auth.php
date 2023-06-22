@@ -76,7 +76,8 @@ function auth(modUser $user, string $ctx = 'web')
     return false;
 }
 
-$modx->log(modX::LOG_LEVEL_ERROR, print_r('response: ' .print_r($response), true));
+$modx->log(modX::LOG_LEVEL_ERROR, print_r('$response: ' .print_r($response), true));
+$modx->log(modX::LOG_LEVEL_ERROR, print_r('$modx->event->name: ' .print_r($modx->event->name), true));
 
 switch ($modx->event->name) 
 {
