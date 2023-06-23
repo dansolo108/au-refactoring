@@ -1,15 +1,15 @@
 <?php
-include_once MODX_CORE_PATH . "/model/modx/rest/modrest.class.php";
+include_once MODX_CORE_PATH . '/model/modx/rest/modrest.class.php';
 class modMaxma
 {
     /** @var modX $modx */
     public $modx;
     /** @var pdoFetch $pdoTools */
     public $pdoTools;
-    public string $version = "1.0.1";
+    public string $version = '1.0.1';
 
     public array $config = [];
-    public string $settings_prefix = "modmaxma_";
+    public string $settings_prefix = 'modmaxma_';
 
     public modRest $modRest;
 
@@ -19,19 +19,19 @@ class modMaxma
     {
         $this->modx = &$modx;
         /** @var modNamespace $namespace */
-        $namespace = $modx->getObject('modNamespace', "modMaxma");
+        $namespace = $modx->getObject('modNamespace', 'modMaxma');
         $corePath = $namespace->getCorePath();
         $assetsPath = $namespace->getAssetsPath();
-        $assetsUrl = str_replace(MODX_BASE_PATH, "", $assetsPath);
-        if ($assetsUrl[0] !== "/") {
-            $assetsUrl = "/" . $assetsUrl;
+        $assetsUrl = str_replace(MODX_BASE_PATH, '', $assetsPath);
+        if ($assetsUrl[0] !== '/') {
+            $assetsUrl = '/' . $assetsUrl;
         }
         //дефолтные значения заменяем значениями из настроек
         $this->config = $this->getOptions([
             'core_path' => $corePath,
             'model_path' => $corePath . 'model/',
             'processors_path' => $corePath . 'processors/',
-            "polling_rate" => 5,
+            'polling_rate' => 5,
             //front
             'frontend_js' => $assetsUrl . 'js/web/default.js',
             // 'frontend_css' =>$assetsUrl . 'css/default.css',
@@ -61,10 +61,10 @@ class modMaxma
             'Content-type' => 'application/json', // Сообщаем сервису, что хотим получить ответ в json формате
             'X-Processing-Key' => $this->config['apiKey']
         ]);
-        $this->ms2 = &$modx->getService("minishop2");
+        $this->ms2 = &$modx->getService('minishop2');
         if (empty($this->ms2)) {
-            $this->modx->log(MODX_LOG_LEVEL_ERROR, "could not load minishop");
-            throw new ErrorException("could not load minishop");
+            $this->modx->log(1, 'could not load minishop');
+            throw new ErrorException('could not load minishop');
         }
         $this->ms2->initialize();
         $this->loadFrontend();
@@ -74,7 +74,7 @@ class modMaxma
         return $this->modx->getOption($this->settings_prefix . $key, $options, $default, $skipEmpty);
     }
 
-    function getOptions($defaultOptions, $prefix = "")
+    function getOptions($defaultOptions, $prefix = '')
     {
         foreach ($defaultOptions as $key => &$option) {
             $option = $this->getOption($prefix . $key, null, $option);
@@ -86,7 +86,7 @@ class modMaxma
     {
         $config = $this->pdoTools->makePlaceholders($this->config);
         // Register JS
-        $js = trim($this->config["frontend_js"]);
+        $js = trim($this->config['frontend_js']);
         if (!empty($js) && preg_match('/\.js/i', $js)) {
             if (preg_match('/\.js$/i', $js)) {
                 $js .= '?v=' . substr(md5($this->version), 0, 10);
@@ -94,7 +94,7 @@ class modMaxma
             $this->modx->regClientScript(str_replace($config['pl'], $config['vl'], $js));
             // готовим js конфиг на фронт
             $js_settings = [
-                'action_url' => $this->config["action_url"],
+                'action_url' => $this->config['action_url'],
             ];
             $data = json_encode($js_settings);
             $this->modx->regClientHTMLBlock(
@@ -105,7 +105,7 @@ class modMaxma
                 </script>"
             );
         }
-        // $css = trim($this->config["frontend_css"]);
+        // $css = trim($this->config['frontend_css']);
         // if (!empty($js) && preg_match('/\.css/i', $css)) {
         //     if (preg_match('/\.css$/i', $css)) {
         //         $css .= '?v=' . substr(md5($this->version), 0, 10);
@@ -117,8 +117,8 @@ class modMaxma
     // Создание нового клиента
     public function createNewClient(array $data)
     {
-        if (!empty($params['phoneNumber'])) {
-            $client = $this->getClientInfo($data['phoneNumber'], 'phoneNumber');
+        if (!empty($data['phoneNumber'])) {
+            $client = $this->getClientInfo($data['phoneNumber']);
         }
         if (!$client) {
             $params = [
@@ -148,7 +148,7 @@ class modMaxma
     public function getClientInfo(string $input, string $type = 'phoneNumber')
     {
         if (!in_array($type, ['phoneNumber', 'externalId', 'card']) || !$input) return false;
-        if ($type == 'phoneNumber') $input = $this->phoneFormat($input);
+        if ($type == 'phoneNumber') $input = $this->phoneFormatting($input);
 
         $params = [];
         $params[$type] = $input;
@@ -167,7 +167,7 @@ class modMaxma
     // Получает баланс бонусов по номеру телефона
     public function getClientBalanceByPhone($phoneNumber)
     {
-        $data = $this->getClientInfo($phoneNumber, 'phoneNumber');
+        $data = $this->getClientInfo($phoneNumber);
         return $data['client']['bonuses'] ?: 0;
     }
 
@@ -187,7 +187,7 @@ class modMaxma
 
     public function setUserphone($phone)
     {
-        $this->userphone = $this->phoneFormat($phone);
+        $this->userphone = $this->phoneFormatting($phone);
     }
 
     // Обновляет информацию о клиенте.
@@ -259,31 +259,31 @@ class modMaxma
     {
         $order = $this->modx->getObject('msOrder', $order_id);
         $products = $order->getMany('Products');
-        $phone = $this->phoneFormat($order->UserProfile->get('mobilephone'));
+        $phone = $this->phoneFormatting($order->UserProfile->get('mobilephone'));
         $queryArr = [
-            "orderId" => $order_id,
-            "calculationQuery" => [
-                "client" => [
-                    "phoneNumber" => (string)$phone
+            'orderId' => $order_id,
+            'calculationQuery' => [
+                'client' => [
+                    'phoneNumber' => (string)$phone
                 ],
-                "shop" => [
-                    "code" => $this->config["shopCode"],
-                    "name" => $this->config["shopName"],
+                'shop' => [
+                    'code' => $this->config['shopCode'],
+                    'name' => $this->config['shopName'],
                 ],
-                "rows" => [],
+                'rows' => [],
             ],
         ];
         $counter = 0;
         foreach ($products as $orderProduct) {
             $product = $orderProduct->getOne('Product');
             $productArr = [
-                "id" => (string)$product->get("id"),
-                "product" => [
-                    "sku" => $product->get('article'),
-                    "title" => $product->get('pagetitle'),
-                    "blackPrice" => $orderProduct->get('price'),
+                'id' => (string)$product->get('id'),
+                'product' => [
+                    'sku' => $product->get('article'),
+                    'title' => $product->get('pagetitle'),
+                    'blackPrice' => $orderProduct->get('price'),
                 ],
-                "qty" => $orderProduct->get("count"),
+                'qty' => $orderProduct->get('count'),
             ];
             $queryArr['calculationQuery']['rows'][$counter] = $productArr;
             $counter++;
@@ -301,7 +301,7 @@ class modMaxma
     // Подтверждение оплаты заказа
     public function confirmOrder(string $order_id)
     {
-        $response = $this->modRest->post('confirm-order', ["orderId" => $order_id]);
+        $response = $this->modRest->post('confirm-order', ['orderId' => $order_id]);
         $data = $response->process();
 
         if (isset($data['errorCode'])) {
@@ -315,7 +315,7 @@ class modMaxma
     // Отмена заказа и возврат зарезервированных бонусов
     public function cancelOrder(string $order_id)
     {
-        $response = $this->modRest->post('cancel-order', ["orderId" => $order_id]);
+        $response = $this->modRest->post('cancel-order', ['orderId' => $order_id]);
         $data = $response->process();
 
         if (isset($data['errorCode'])) {
@@ -340,15 +340,15 @@ class modMaxma
         $params = [
             'calculationQuery' => [
                 'shop' => [
-                    "code" => $this->config['shopCode'],
-                    "name" => $this->config['shopName'],
+                    'code' => $this->config['shopCode'],
+                    'name' => $this->config['shopName'],
                 ],
-                "applyBonuses" => $bonuses,
-                "rows" => [],
+                'applyBonuses' => $bonuses,
+                'rows' => [],
             ]
         ];
         if ($user_id) {
-            $params["calculationQuery"]["client"]["externalId"] = (string)$user_id;
+            $params['calculationQuery']['client']['externalId'] = (string)$user_id;
         }
         if ($promocode) {
             $params['calculationQuery']['promocode'] = $promocode;
@@ -361,12 +361,12 @@ class modMaxma
             if (empty($entry['price']) || empty($entry['count']))
                 continue;
             $params['calculationQuery']['rows'][] = [
-                "product" => [
-                    "sku" => (string)$modification->get('code') ?: $product->get('article'),
-                    "title" => $product->get('pagetitle'),
-                    "blackPrice" => $modification->get('price'),
+                'product' => [
+                    'sku' => (string)$modification->get('code') ?: $product->get('article'),
+                    'title' => $product->get('pagetitle'),
+                    'blackPrice' => $modification->get('price'),
                 ],
-                "qty" => (int)$entry['count'],
+                'qty' => (int)$entry['count'],
             ];
         }
         if (count($params['calculationQuery']['rows']) == 0) {
@@ -424,16 +424,16 @@ class modMaxma
     {
         $order = $this->ms2->order->get();
         $user_id = null;
-        if ($user =  $this->modx->getAuthenticatedUser("web")) {
+        if ($user =  $this->modx->getAuthenticatedUser('web')) {
             $user_id = $user->get('id');
         }
         if ($promocode == null) {
-            $promocode = $order["promocode"] ?: "";
+            $promocode = $order['promocode'] ?: '';
         }
         if ($bonuses  == null) {
-            $bonuses = $order["bonuses"] ?: 0;
+            $bonuses = $order['bonuses'] ?: 0;
         }
-        return $this->calculatePurchase($this->ms2->cart->config["cart"], $user_id, $bonuses, $promocode);
+        return $this->calculatePurchase($this->ms2->cart->config['cart'], $user_id, $bonuses, $promocode);
     }
 
 
@@ -453,10 +453,10 @@ class modMaxma
     }
 
     // Преобразование телефона к единому виду 2.0
-    public function phoneFormat(string $phone)
+    public function phoneFormatting(string $phone)
     {
-        $phone = trim($phone);
-        $formattedPhone = preg_replace(
+        $trim = trim($phone);
+        $formatted = preg_replace(
             array(
                 '/[\+]?([7|8])[-|\s]?\([-|\s]?(\d{3})[-|\s]?\)[-|\s]?(\d{3})[-|\s]?(\d{2})[-|\s]?(\d{2})/',
                 '/[\+]?([7|8])[-|\s]?(\d{3})[-|\s]?(\d{3})[-|\s]?(\d{2})[-|\s]?(\d{2})/',
@@ -473,15 +473,87 @@ class modMaxma
                 '+7$2$3$4',
                 '+7$2$3$4',
             ),
-            $phone
+            $trim
         );
-        if (strlen($formattedPhone) < 11) {
-            $this->modx->log(modX::LOG_LEVEL_ERROR, print_r('modMaxma class: в номере ' . $formattedPhone . ' меньше 12 символов', true));
-            return false;
-        } elseif (strlen($formattedPhone) > 11) {
-            $this->modx->log(modX::LOG_LEVEL_ERROR, print_r('modMaxma class: в номере ' . $formattedPhone . ' больше 12 символов', true));
+        return $formatted;
+    }
+
+    public function calculateOrder($bonuses = null, $promocode = null)
+    {
+        $cart = $this->ms2->cart->config['cart'];
+        $order = $this->ms2->order->get();
+        $phone = null;
+
+        if ($user =  $this->modx->getAuthenticatedUser('web')) {
+
+            $profile = $user->getOne('Profile');
+            $userPhone = $this->phoneFormatting($profile->get('mobilephone'));
+            if ($this->getClientInfo($userPhone)) {
+                $phone = $userPhone;
+            }
+
+        }
+
+        if ($promocode == null) {
+            $promocode = $order['promocode'] ?: '';
+        }
+
+        if ($bonuses  == null) {
+            $bonuses = $order['bonuses'] ?: 0;
+        }
+
+        return $this->calculatePurchaseV2($cart, $phone, $bonuses, $promocode);
+    }
+
+    public function calculatePurchaseV2($cart, $phone = null, $bonuses = 0, string $promocode = '')
+    {
+        if (count($cart) == 0) {
             return false;
         }
-        return $formattedPhone;
+        $params = [
+            'calculationQuery' => [
+                'shop' => [
+                    'code' => $this->config['shopCode'],
+                    'name' => $this->config['shopName'],
+                ],
+                'applyBonuses' => $bonuses,
+                'rows' => [],
+            ]
+        ];
+        if ($phone) {
+            $params['calculationQuery']['client']['phoneNumber'] = (string)$phone;
+        }
+        if ($promocode) {
+            $params['calculationQuery']['promocode'] = $promocode;
+        }
+        foreach ($cart as $entry) {
+            /** @var Modification $modification */
+            $modification = $this->modx->getObject('Modification', $entry['id']);
+            /** @var msProduct $product */
+            $product = $modification->getOne('Product');
+            if (empty($entry['price']) || empty($entry['count']))
+                continue;
+            $params['calculationQuery']['rows'][] = [
+                'product' => [
+                    'sku' => (string)$modification->get('code') ?: $product->get('article'),
+                    'title' => $product->get('pagetitle'),
+                    'blackPrice' => $modification->get('price'),
+                ],
+                'qty' => (int)$entry['count'],
+            ];
+        }
+        if (count($params['calculationQuery']['rows']) == 0) {
+            $this->modx->log(1, 'Maxma calculatePurchaseV2 error (count or price)');
+            return false;
+        }
+        $response = $this->modRest->post('v2/calculate-purchase', $params);
+        $data = $response->process();
+
+        if (isset($data['errorCode'])) {
+            $this->modx->log(1, 'Maxma calculatePurchaseV2 error: ' . print_r($data, 1));
+            return false;
+        } else {
+            return $data;
+        }
     }
 }
