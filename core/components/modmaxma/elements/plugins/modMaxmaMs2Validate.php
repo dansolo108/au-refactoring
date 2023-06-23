@@ -5,6 +5,10 @@
 /** @var $order msOrderCustom */
 
 if(($key == "promocode" || $key == "bonuses") && $value){
+
+
+    $modx->log(1, 'modMaxmaMs2Validate plugin check!');
+
     /** @var modNamespace $ns */
     $ns = $modx->getObject("modNamespace","modmaxma");
     /** @var modMaxma $maxma */

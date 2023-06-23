@@ -11,7 +11,7 @@
  */
 if (($key == 'promocode' || $key == 'bonuses') && $value) {
 
-    $this->modx->log(1, 'ms2validate plugin check!');
+    $modx->log(1, 'ms2validate plugin check!');
 
     /** @var modMaxma $maxma */
     $maxma = $modx->getService('modmaxma');
