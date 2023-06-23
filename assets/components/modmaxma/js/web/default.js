@@ -5,8 +5,8 @@ class modMaxma {
                 window.miniShop2.Message.error(response.message)
             },
             success:({prefix})=>{
-                if(prefix === "set"){
-                    // this.getAction("order_bonuses")
+                if(prefix === 'set'){
+                    // this.getAction('order_bonuses')
                 }
             }
         },
@@ -26,7 +26,7 @@ class modMaxma {
                     let bonusesBlocks = document.querySelectorAll(`.auten-bonuses`);
                     if(response.data.bonuses){
                         bonusesBlocks.forEach((item)=>{
-                            item.classList.add("applied");
+                            item.classList.add('applied');
 
                         });
                         document.querySelectorAll(`.maxma_bonuses_applied`).forEach(item=>{
@@ -34,7 +34,7 @@ class modMaxma {
                         })
                     }else{
                         bonusesBlocks.forEach((item)=>{
-                            item.classList.remove("applied");
+                            item.classList.remove('applied');
                         });
                     }
                 },
@@ -43,19 +43,19 @@ class modMaxma {
                 before:()=>{
                     let inputs = document.querySelectorAll(`input[name=promocode]`);
                     inputs.forEach((item)=>{
-                        item.closest(`.maxma_field`).classList.add("inactive");
+                        item.closest(`.maxma_field`).classList.add('inactive');
                     });
                 },
                 success:({response})=>{
                     let inputs = document.querySelectorAll(`input[name=promocode]`);
                     if(response.data.promocode){
                         inputs.forEach((item)=>{
-                            item.closest(`.maxma_field`).classList.add("inactive");
+                            item.closest(`.maxma_field`).classList.add('inactive');
                         });
                     }else{
                         inputs.forEach((item)=>{
-                            item.value = "";
-                            item.closest(`.maxma_field`).classList.remove("inactive");
+                            item.value = '';
+                            item.closest(`.maxma_field`).classList.remove('inactive');
                         });
                     }
                     this.ms2.Order.getcost();
@@ -63,26 +63,26 @@ class modMaxma {
                 error:({response})=>{
                     let inputs = document.querySelectorAll(`input[name=promocode]`);
                     inputs.forEach((item)=>{
-                        item.value = "";
-                        item.closest(`.maxma_field`).classList.remove("inactive");
+                        item.value = '';
+                        item.closest(`.maxma_field`).classList.remove('inactive');
                     });
                 }
             }
         },
     }
     config = {
-        action_url: "/assets/components/modmaxma/action.php",
+        action_url: '/assets/components/modmaxma/action.php',
     }
     ms2;
 
     constructor(config) {
         this.config = {...this.config, ...config};
         this.ms2 = window.miniShop2;
-        document.addEventListener("submit", this.submit.bind(this));
-        this.ms2.addCallback("Cart.change.response.success","modMaxma",(response)=>{
-            this.getAction("order_bonuses");
+        document.addEventListener('submit', this.submit.bind(this));
+        this.ms2.addCallback('Cart.change.response.success','modMaxma',(response)=>{
+            this.getAction('order_bonuses');
         })
-        this.ms2.addCallback("Order.getcost.response.success","modMaxma",(response)=>{
+        this.ms2.addCallback('Order.getcost.response.success','modMaxma',(response)=>{
             if(response.data.bonuses_discount){
                 document.querySelectorAll(`.maxma_bonuses_applied`).forEach(item=>{
                     item.innerText = new Intl.NumberFormat(undefined, {
@@ -117,19 +117,19 @@ class modMaxma {
     }
 
     getAction(action) {
-        this.action(action, {},"GET",`get`);
+        this.action(action, {},'GET',`get`);
     }
 
     setAction(action, value) {
-        this.action(action, {value: value},"POST",`set`);
+        this.action(action, {value: value},'POST',`set`);
     }
 
-    action(action = "", params = {}, method = "POST",prefix=``) {
+    action(action = '', params = {}, method = 'POST',prefix=``) {
         let path = (prefix?prefix+`.`:``)+`${action}`;
         this.dispatchEvent([`action.before`,`${path}.before`],{
             action,params,method,prefix
         })
-        this.fetch(this.config.action_url, {...params, "modmaxma_action": action}, method).then(async response => {
+        this.fetch(this.config.action_url, {...params, 'modmaxma_action': action}, method).then(async response => {
             if (!response.ok)
                 return;
             response = await response.json();
@@ -153,10 +153,10 @@ class modMaxma {
         });
     }
 
-    fetch(url, params = {}, method = "POST", headers = {'X-Requested-With': 'XMLHttpRequest'}) {
+    fetch(url, params = {}, method = 'POST', headers = {'X-Requested-With': 'XMLHttpRequest'}) {
         let options = {method, headers};
         if (method === 'GET') {
-            url = url + "?" + (new URLSearchParams(params).toString());
+            url = url + '?' + (new URLSearchParams(params).toString());
         } else if (params && Object.keys(params).length !== 0) {
             if(params instanceof FormData){
                 options.body = params;
@@ -177,7 +177,7 @@ class modMaxma {
             })
             return;
         }
-        path = path.split(".");
+        path = path.split('.');
         let element = this.listeners;
         path.forEach(item=>{
             element = element[item];
@@ -185,7 +185,7 @@ class modMaxma {
         if(!element){
             return;
         }
-        if(typeof element == "function"){
+        if(typeof element == 'function'){
             element = [element];
         }
         if(element instanceof Array){
@@ -195,7 +195,7 @@ class modMaxma {
         }
     }
     addEventListener(path,func){
-        path = path.split(".");
+        path = path.split('.');
         let element = this.listeners;
         path.forEach(item=>{
             element = element[item];
