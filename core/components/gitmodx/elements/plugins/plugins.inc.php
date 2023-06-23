@@ -31,9 +31,6 @@ return array(
     'msOnBeforeGetOrderCustomer' => [
         'loginAndRegister'
     ],
-    'msOnChangeOrderStatus' => [
-        'certificate'
-    ],
     'OnUserSave' => [
         'loginAndRegister'
     ],
@@ -52,8 +49,5 @@ return array(
     ],
     'msOnRemoveFromCart' => [
         'refreshPrices'
-    ],
-    'msOnValidateOrderValue' => [
-        'ms2validate'
     ],
 );

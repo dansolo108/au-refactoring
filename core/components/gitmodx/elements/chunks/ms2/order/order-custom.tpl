@@ -8,11 +8,11 @@
         ]}
         <form class="maxma_form auten-loyalty" action="promocode">
             <div class=" auten-promo ">
-                <label class="auten-field maxma_field auten-promo__field {if $form["promocode"]}inactive{/if}">
+                <label class="auten-field maxma_field auten-promo__field {if $form['promocode']}inactive{/if}">
                     <div class="auten-field__title">
                         Промокод
                     </div>
-                    <input type="text" class="auten-field__input" name="promocode" value="{$form["promocode"]}">
+                    <input type="text" class="auten-field__input" name="promocode" value="{$form['promocode']}">
                 </label>
                 <button type="submit" data-action="promocode" class="auten-button auten-promo__button">
                     Применить
