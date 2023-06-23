@@ -10,7 +10,6 @@ require_once MODX_CORE_PATH . 'config/' . MODX_CONFIG_KEY . '.inc.php';
 require_once MODX_BASE_PATH . 'index.php';
 /** @var $modx modX */
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $modx->log(1, 'etot action test');
     /** @var miniShop2 $ms2 */
     $ms2 = $modx->getService('minishop2');
 
