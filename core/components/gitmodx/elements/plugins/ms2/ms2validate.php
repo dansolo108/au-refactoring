@@ -21,7 +21,7 @@ if (($key == 'promocode' || $key == 'bonuses') && $value) {
         $maxma = $modx->getService('modmaxma', 'modMaxma', $ns->getCorePath() . '/model/');
     }
     if ($key == 'promocode') {
-        $response = $maxma->calculateCurrent(0, $value);
+        $response = $maxma->calculateOrder(0, $value);
         if (!$response) {
             $modx->event->_output = 'empty error';
             return;
@@ -34,7 +34,7 @@ if (($key == 'promocode' || $key == 'bonuses') && $value) {
         $order->config['order']['promocode'] = $value;
         $order->add('bonuses', 1);
     } else {
-        $response = $maxma->calculateCurrent();
+        $response = $maxma->calculateOrder();
         if (!$response) {
             $modx->event->_output = 'empty error';
             return;
