@@ -5,8 +5,8 @@ $ns = $modx->getObject("modNamespace", "modmaxma");
 /** @var modMaxma $maxma */
 $maxma = $modx->getService("modmaxma", "modMaxma", $ns->getCorePath() . "/model/");
 switch ($modx->event->name) {
-    $modx->log(1, 'modmaxma plugin check');
     case "msOnGetOrderCost":
+        $modx->log(1, 'modmaxma plugin check');
         $maxma->ms2 = $order->ms2;
         /** @var array $result */
         $result["promocode_discount"] = "";
