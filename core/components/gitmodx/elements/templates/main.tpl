@@ -327,9 +327,7 @@
                         <span class="au-header__number  au-header__favorite-number msfavorites-total badge-count"
                               data-data-list="default" data-data-type="resource" data-value=""></span>
                     </a>
-                    {'!msMiniCart' | snippet : [
-                    'tpl' => 'stik.msMiniCart',
-                    ]}
+
                 </div>
             </div>
             <div class="au-burger">
