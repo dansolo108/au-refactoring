@@ -12,6 +12,8 @@
 if (($key == 'promocode' || $key == 'bonuses') && $value) {
 
     $modx->log(1, 'ms2validate plugin check!');
+    $modx->log(1, 'key: '. $key);
+    $modx->log(1, 'value: '. $value);
 
     /** @var modMaxma $maxma */
     $maxma = $modx->getService('modmaxma');
@@ -21,20 +23,28 @@ if (($key == 'promocode' || $key == 'bonuses') && $value) {
         $maxma = $modx->getService('modmaxma', 'modMaxma', $ns->getCorePath() . '/model/');
     }
     if ($key == 'promocode') {
+
         $response = $maxma->calculateOrder(null, $value);
+
+        $modx->log(1, 'response: '. print_r($response, true));
+
         if (!$response) {
             $modx->event->_output = 'empty error';
             return;
         }
+
         $response = $response['calculationResult'];
+
         if (!$response['promocode']['applied']) {
             $modx->event->_output = $response['promocode']['error']['description'];
             return;
         }
+
         $order->config['order']['promocode'] = $value;
         $order->add('bonuses', 1);
+
     } else {
-        $response = $maxma->calculateOrder();
+        $response = $maxma->calculateOrder($value, null);
         if (!$response) {
             $modx->event->_output = 'empty error';
             return;
