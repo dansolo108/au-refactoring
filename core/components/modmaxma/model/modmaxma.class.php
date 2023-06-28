@@ -480,7 +480,6 @@ class modMaxma
 
     public function calculateOrder($bonuses = null, $promocode = null)
     {
-        $cart = $this->ms2->cart->config['cart'];
         $order = $this->ms2->order->get();
         $phone = null;
 
@@ -502,7 +501,7 @@ class modMaxma
             $bonuses = $order['bonuses'] ?: 0;
         }
 
-        return $this->calculatePurchaseV2($cart, $phone, $bonuses, $promocode);
+        return $this->calculatePurchaseV2($this->ms2->cart->config['cart'], $phone, $bonuses, $promocode);
     }
 
     public function calculatePurchaseV2($cart, $phone = null, $bonuses = 0, string $promocode = '')
