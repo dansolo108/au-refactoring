@@ -481,6 +481,9 @@ class modMaxma
     public function calculateOrder($bonuses = null, $promocode = null)
     {
         $order = $this->ms2->order->get();
+
+        $this->modx->log(1, 'calculateOrder order: '. print_r($order, true));
+
         $phone = null;
 
         if ($user =  $this->modx->getAuthenticatedUser('web')) {
@@ -491,6 +494,8 @@ class modMaxma
                 $phone = $userPhone;
             }
 
+            $this->modx->log(1, 'calculateOrder profile: '. print_r($profile, true));
+
         }
 
         if ($promocode == null) {
@@ -500,6 +505,10 @@ class modMaxma
         if ($bonuses  == null) {
             $bonuses = $order['bonuses'] ?: 0;
         }
+
+        $this->modx->log(1, 'calculateOrder phone: '. $phone);
+        $this->modx->log(1, 'calculateOrder bonuses: '. $bonuses);
+        $this->modx->log(1, 'calculateOrder promocode: '. $promocode);
 
         return $this->calculatePurchaseV2($this->ms2->cart->config['cart'], $phone, $bonuses, $promocode);
     }
