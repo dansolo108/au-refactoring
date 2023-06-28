@@ -481,21 +481,25 @@ class modMaxma
     public function calculateOrder($bonuses = null, $promocode = null)
     {
         $order = $this->ms2->order->get();
-
-        $this->modx->log(1, 'calculateOrder order: '. print_r($order, true));
-
         $phone = null;
 
         if ($user =  $this->modx->getAuthenticatedUser('web')) {
 
             $profile = $user->getOne('Profile');
             $userPhone = $this->phoneFormatting($profile->get('mobilephone'));
-            if ($this->getClientInfo($userPhone)) {
+
+            $maxmaClient = $this->getClientInfo($userPhone);
+
+            $this->modx->log(1, 'calculateOrder maxmaClient: '. print_r($maxmaClient, true));
+
+            if ($maxmaClient) {
                 $phone = $userPhone;
             }
 
             $this->modx->log(1, 'calculateOrder profile: '. print_r($profile, true));
 
+        } else {
+            $this->modx->log(1, 'calculateOrder user не авторизован');
         }
 
         if ($promocode == null) {
