@@ -21,7 +21,7 @@ if (($key == 'promocode' || $key == 'bonuses') && $value) {
         $maxma = $modx->getService('modmaxma', 'modMaxma', $ns->getCorePath() . '/model/');
     }
     if ($key == 'promocode') {
-        $response = $maxma->calculateOrder(0, $value);
+        $response = $maxma->calculateOrder(null, $value);
         if (!$response) {
             $modx->event->_output = 'empty error';
             return;
