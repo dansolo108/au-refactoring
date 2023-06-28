@@ -11,8 +11,8 @@
  */
 if (($key == 'promocode' || $key == 'bonuses') && $value) {
 
-    $modx->log(1, 'ms2validate key: '. $key);
-    $modx->log(1, 'ms2validate value: '. $value);
+    // $modx->log(1, 'ms2validate key: '. $key);
+    // $modx->log(1, 'ms2validate value: '. $value);
 
     /** @var modMaxma $maxma */
     $maxma = $modx->getService('modmaxma');
@@ -22,7 +22,7 @@ if (($key == 'promocode' || $key == 'bonuses') && $value) {
         $maxma = $modx->getService('modmaxma', 'modMaxma', $ns->getCorePath() . '/model/');
     }
 
-    $modx->log(1, 'ms2validate maxma: '. print_r($maxma, true));
+    // $modx->log(1, 'ms2validate maxma: '. print_r($maxma, true));
 
     if ($key == 'promocode') {
 
