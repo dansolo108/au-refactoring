@@ -50,4 +50,10 @@ return array(
     'msOnRemoveFromCart' => [
         'refreshPrices'
     ],
+    'msOnRemoveFromCart' => [
+        'refreshPrices'
+    ],
+    'msOnValidateOrderValue' => [
+        'ms2validate'
+    ],
 );
